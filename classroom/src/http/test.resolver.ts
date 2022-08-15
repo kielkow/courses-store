@@ -9,7 +9,7 @@ export class TestResolver {
 
   @Query(() => String)
   @UseGuards(AuthorizationGuard)
-  getCustomers() {
-    return this.prisma.customer.findMany();
+  getStudents() {
+    return this.prisma.student.findMany();
   }
 }
