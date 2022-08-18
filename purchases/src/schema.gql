@@ -32,4 +32,12 @@ type Query {
   products: [Product!]!
 }
 
+type Mutation {
+  createProduct(data: CreateProductInput!): Product!
+}
+
+input CreateProductInput {
+  title: String!
+}
+
 scalar link__Import
