@@ -42,11 +42,15 @@ export class PurchasesResolver {
     @Args('data') data: CreatePurchaseInput,
     @CurrentUser() user: AuthUser,
   ) {
-    const customer = await this.customersService.getCustomerByAuthUserId(
+    let customer = await this.customersService.getCustomerByAuthUserId(
       user.sub,
     );
 
-    if (!customer) throw new Error('Customer not found');
+    if (!customer) {
+      customer = await this.customersService.createCustomer({
+        authUserId: user.sub,
+      });
+    }
 
     return this.purchasesService.createPurchase({
       customerId: customer.id,
