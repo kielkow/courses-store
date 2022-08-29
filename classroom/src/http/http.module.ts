@@ -5,7 +5,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import path from 'node:path';
 
 import { DatabaseModule } from 'src/database/database.module';
-import { TestResolver } from 'src/http/test.resolver';
+import { CoursesResolver } from './graphql/resolvers/courses.resolver';
+import { EnrollmentsResolver } from './graphql/resolvers/enrollments.resolver';
+import { StudentsResolver } from './graphql/resolvers/students.resolver';
 
 @Module({
   imports: [
@@ -17,6 +19,11 @@ import { TestResolver } from 'src/http/test.resolver';
     }),
   ],
   controllers: [],
-  providers: [TestResolver],
+  providers: [
+    // Resolvers
+    CoursesResolver,
+    EnrollmentsResolver,
+    StudentsResolver,
+  ],
 })
 export class HttpModule {}
