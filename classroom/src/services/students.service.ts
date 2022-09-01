@@ -5,6 +5,10 @@ import { PrismaService } from 'src/database/prisma/prisma.service';
 export class StudentsService {
   constructor(private prisma: PrismaService) {}
 
+  getStudentByAuthUserId(authUserId: string) {
+    return this.prisma.student.findUnique({ where: { authUserId } });
+  }
+
   listAllStudents() {
     return this.prisma.student.findMany();
   }
