@@ -16,6 +16,12 @@ export class CoursesResolver {
   }
 
   @UseGuards(AuthorizationGuard)
+  @Query(() => Course)
+  course(@Args('id') id: string) {
+    return this.coursesService.getCourseById(id);
+  }
+
+  @UseGuards(AuthorizationGuard)
   @Mutation(() => Course)
   createCourse(@Args('data') data: CreateCourseInput) {
     return this.coursesService.createCourse(data);
